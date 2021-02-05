@@ -12,3 +12,4 @@ go run test.go 01/Mux8Way16
 // opening files: 01/Mux8Way16.out, 01/Mux8Way16.cmp
 // 01/Mux8Way16.hdl implemented correctly
 ```
+path name can be autocompleted with tab!
