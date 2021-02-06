@@ -4,6 +4,7 @@ import(
 	"fmt"
 	"os"
 	"io/ioutil"
+	"strings"
 )
 
 func main() {
@@ -29,11 +30,13 @@ func main() {
 		panic(err)
 	}
 	// fmt.Println(string(cmp))
+	outstr := strings.Trim(string(out)," \r\n")
+	cmpstr := strings.Trim(string(cmp)," \r\n")
 
-	if string(out) == string(out)  {
+	if outstr == cmpstr  {
 		fmt.Printf("%s.hdl implemented correctly\n", path)
 	} else {
-		fmt.Printf("%s:\n%s\n%s:\n%s", outPath, string(out), cmpPath, string(cmp))
+		fmt.Printf("%s:\n%s\n%s:\n%s\n", outPath, string(out), cmpPath, string(cmp))
 	}
 	
 }
