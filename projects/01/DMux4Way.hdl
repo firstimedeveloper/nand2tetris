@@ -17,4 +17,43 @@ CHIP DMux4Way {
 
     PARTS:
     // Put your code here:
+	Not(in=sel[0], out=notsel0);
+	Not(in=sel[1], out=notsel1);
+	
+	And(a=notsel1, b=notsel0, out=sela);
+	And(a=notsel1, b=sel[0], out=selb);
+	And(a=sel[1], b=notsel0, out=selc);
+	And(a=sel[1], b=sel[0], out=seld);
+
+	And(a=sela, b=in, out=a1);
+	And(a=selb, b=false, out=a2);
+	And(a=selc, b=false, out=a3);
+	And(a=seld, b=false, out=a4);
+	Or(a=a1, b=a2, out=tempa1);
+	Or(a=a3, b=a4, out=tempa2);
+	Or(a=tempa1, b=tempa2, out=a);
+
+	And(a=sela, b=false, out=b1);
+	And(a=selb, b=in, out=b2);
+	And(a=selc, b=false, out=b3);
+	And(a=seld, b=false, out=b4);
+	Or(a=b1, b=b2, out=tempb1);
+	Or(a=b3, b=b4, out=tempb2);
+	Or(a=tempb1, b=tempb2, out=b);
+
+	And(a=sela, b=false, out=c1);
+	And(a=selb, b=false, out=c2);
+	And(a=selc, b=in, out=c3);
+	And(a=seld, b=false, out=c4);
+	Or(a=c1, b=c2, out=tempc1);
+	Or(a=c3, b=c4, out=tempc2);
+	Or(a=tempc1, b=tempc2, out=c);
+
+	And(a=sela, b=false, out=d1);
+	And(a=selb, b=false, out=d2);
+	And(a=selc, b=false, out=d3);
+	And(a=seld, b=in, out=d4);
+	Or(a=d1, b=d2, out=tempd1);
+	Or(a=d3, b=d4, out=tempd2);
+	Or(a=tempd1, b=tempd2, out=d);
 }
