@@ -17,4 +17,16 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+    Or(a=load, b=inc, out=loadorinc);
+    Or(a=loadorinc, b=reset, out=realload);
+    Register(in=tout, load=realload, out=t1out, out=out);
+
+    Not(in=load, out=notload);
+    And(a=notload, b=inc, out=realinc);
+    Add16(a=t1out, b[0]=true, b[1..15]=false, out=incout);
+    Mux16(a=in, b=incout, sel=realinc, out=out1);
+
+    Mux16(a=out1, b=false, sel=reset, out=tout);
+
+
 }
